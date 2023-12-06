@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModeleController!{% endblock %}
+
+{% block body %}
+    <h1>Modeles</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Marque</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in modeles %}
+                <tr>
+                    <td>{{m.nom}}</td>
+                    <td>{{m.prix}}€</td>
+                    <td>
+                        {{m.marque.nom}}
+                    </td>
+                    <td>
+                        <a href="{{path('modele_edit', {'id': m.id})}}">Editer</a> / 
+                        <a href="{{path('modele_delete', {'id': m.id})}}">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Il n'y a aucun modèle</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Ajouter un modèle</h2>
+    {{form(ajout)}}
+{% endblock %}
